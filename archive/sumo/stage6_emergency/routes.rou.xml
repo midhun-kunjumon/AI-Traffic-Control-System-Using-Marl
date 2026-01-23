@@ -1,0 +1,56 @@
+<routes>
+
+    <!-- ================= VEHICLE TYPE ================= -->
+    <vType id="car"
+       accel="2.0"
+       decel="4.5"
+       length="4.5"
+       maxSpeed="13.9"
+       minGap="2.5"
+       sigma="0.3"/>
+
+    <!-- Emergency Vehicle: Higher speed, distinct visual, vClass -->
+    <vType id="emergency"
+       vClass="emergency"
+       guiShape="emergency"
+       color="255,0,0"
+       accel="3.0"
+       decel="6.0"
+       length="5.5"
+       maxSpeed="20.0"
+       minGap="2.0"
+       sigma="0.0"/>
+
+
+    <!-- ================= ROUTES ================= -->
+    <route id="north_to_south" edges="N_to_J0 J0_to_S"/>
+    <route id="south_to_north" edges="S_to_J0 J0_to_N"/>
+    <route id="east_to_west"   edges="E_to_J0 J0_to_W"/>
+    <route id="west_to_east"   edges="W_to_J0 J0_to_E"/>
+
+    <!-- ================= NORMAL FLOWS ================= -->
+    <flow id="flow_NS" type="car" route="north_to_south"
+          begin="0" end="2000" vehsPerHour="600"/>
+
+    <flow id="flow_SN" type="car" route="south_to_north"
+          begin="0" end="2000" vehsPerHour="600"/>
+
+    <flow id="flow_EW" type="car" route="east_to_west"
+          begin="0" end="2000" vehsPerHour="600"/>
+
+    <flow id="flow_WE" type="car" route="west_to_east"
+          begin="0" end="2000" vehsPerHour="600"/>
+
+    <!-- ================= EMERGENCY FLOWS ================= -->
+    <!-- Define a few discrete emergency events for validation -->
+    
+    <!-- Pulse 1: Ambulance from North at t=200 -->
+    <trip id="ambu_1" type="emergency" from="N_to_J0" to="J0_to_S" depart="200" />
+
+    <!-- Pulse 2: Firetruck from East at t=600 -->
+    <trip id="fire_1" type="emergency" from="E_to_J0" to="J0_to_W" depart="600" />
+    
+    <!-- Pulse 3: Ambulance from West at t=1000 -->
+    <trip id="ambu_2" type="emergency" from="W_to_J0" to="J0_to_E" depart="1000" />
+
+</routes>

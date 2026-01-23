@@ -1,0 +1,14 @@
+{
+    "Stable RL": {
+        "waiting_time": 40.99,
+        "vehicle_count": 264
+    },
+    "Fixed Time": {
+        "waiting_time": 74.0,
+        "vehicle_count": 163
+    },
+    "Emergency RL": {
+        "waiting_time": 40.99,
+        "vehicle_count": 264
+    }
+}

@@ -1,0 +1,35 @@
+<additional>
+    <!-- 
+      Split Phasing Traffic Light Logic (Single Approach Priority)
+      Prevent collisions by giving green to only one arm at a time.
+      
+      Link Indices (from intersection.net.xml):
+      0,1,2: South Approach (L, S, R)
+      3,4,5: East Approach (L, S, R)
+      6,7,8: North Approach (L, S, R)
+      9,10,11: West Approach (L, S, R)
+      
+      Cycle: North -> East -> South -> West
+    -->
+    <tlLogic id="J0" type="static" programID="split_phase" offset="0">
+        <!-- Phase 0: North Green (Indices 6,7,8) -->
+        <phase duration="30" state="rrrrrrGGGrrr"/>
+        <!-- Phase 1: North Yellow -->
+        <phase duration="3"  state="rrrrrryyyrrr"/>
+        
+        <!-- Phase 2: East Green (Indices 3,4,5) -->
+        <phase duration="30" state="rrrGGGrrrrrr"/>
+        <!-- Phase 3: East Yellow -->
+        <phase duration="3"  state="rrryyyrrrrrr"/>
+        
+        <!-- Phase 4: South Green (Indices 0,1,2) -->
+        <phase duration="30" state="GGGrrrrrrrrr"/>
+        <!-- Phase 5: South Yellow -->
+        <phase duration="3"  state="yyyrrrrrrrrr"/>
+        
+        <!-- Phase 6: West Green (Indices 9,10,11) -->
+        <phase duration="30" state="rrrrrrrrrGGG"/>
+        <!-- Phase 7: West Yellow -->
+        <phase duration="3"  state="rrrrrrrrryyy"/>
+    </tlLogic>
+</additional>

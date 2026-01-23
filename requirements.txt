@@ -1,0 +1,6 @@
+traci
+sumolib
+stable-baselines3
+gymnasium
+shimmy
+tensorboard

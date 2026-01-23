@@ -1,0 +1,77 @@
+<routes>
+    <!-- 
+      STAGE 7 ROUTES (2-Lane LHT + Emergency)
+      
+      We rely on 'departLane="best"' to help SUMO pick the correct lane based on the route.
+      However, we can also be explicit if needed.
+    -->
+
+    <vType id="car" accel="2.0" decel="4.5" length="4.5" maxSpeed="13.9" minGap="2.5" sigma="0.3"/>
+    
+    <!-- Emergency Vehicle -->
+    <vType id="emergency" vClass="emergency" guiShape="emergency" color="255,0,0" accel="3.0" decel="6.0" length="5.5" maxSpeed="20.0" minGap="2.0" sigma="0.0"/>
+
+    <!-- ROUTES -->
+    <!-- Directions: N=North, S=South, E=East, W=West -->
+    
+    <!-- North -> South (Straight) -->
+    <route id="N_S" edges="N_to_J0 J0_to_S"/>
+    <!-- North -> East (Left Turn) -->
+    <route id="N_E" edges="N_to_J0 J0_to_E"/>
+    <!-- North -> West (Right Turn) -->
+    <route id="N_W" edges="N_to_J0 J0_to_W"/>
+    
+    <!-- South -> North (Straight) -->
+    <route id="S_N" edges="S_to_J0 J0_to_N"/>
+    <!-- South -> West (Left Turn) -->
+    <route id="S_W" edges="S_to_J0 J0_to_W"/>
+    <!-- South -> East (Right Turn) -->
+    <route id="S_E" edges="S_to_J0 J0_to_E"/>
+    
+    <!-- East -> West (Straight) -->
+    <route id="E_W" edges="E_to_J0 J0_to_W"/>
+    <!-- East -> South (Left Turn) -->
+    <route id="E_S" edges="E_to_J0 J0_to_S"/>
+    <!-- East -> North (Right Turn) -->
+    <route id="E_N" edges="E_to_J0 J0_to_N"/>
+    
+    <!-- West -> East (Straight) -->
+    <route id="W_E" edges="W_to_J0 J0_to_E"/>
+    <!-- West -> North (Left Turn) -->
+    <route id="W_N" edges="W_to_J0 J0_to_N"/>
+    <!-- West -> South (Right Turn) -->
+    <route id="W_S" edges="W_to_J0 J0_to_S"/>
+
+    <!-- FLOWS -->
+    <!-- Lane Distribution: 
+         Strategy: Use 'departLane="best"' so SUMO puts Left turners in Lane 0, Others in Lane 1.
+    -->
+    
+    <!-- North Inflow -->
+    <flow id="f_NS" type="car" route="N_S" begin="0" end="2000" vehsPerHour="400" departLane="best"/>
+    <flow id="f_NE" type="car" route="N_E" begin="0" end="2000" vehsPerHour="200" departLane="best"/>
+    <flow id="f_NW" type="car" route="N_W" begin="0" end="2000" vehsPerHour="200" departLane="best"/>
+    
+    <!-- South Inflow -->
+    <flow id="f_SN" type="car" route="S_N" begin="0" end="2000" vehsPerHour="400" departLane="best"/>
+    <flow id="f_SW" type="car" route="S_W" begin="0" end="2000" vehsPerHour="200" departLane="best"/>
+    <flow id="f_SE" type="car" route="S_E" begin="0" end="2000" vehsPerHour="200" departLane="best"/>
+    
+    <!-- East Inflow -->
+    <flow id="f_EW" type="car" route="E_W" begin="0" end="2000" vehsPerHour="400" departLane="best"/>
+    <flow id="f_ES" type="car" route="E_S" begin="0" end="2000" vehsPerHour="200" departLane="best"/>
+    <flow id="f_EN" type="car" route="E_N" begin="0" end="2000" vehsPerHour="200" departLane="best"/>
+    
+    <!-- West Inflow -->
+    <flow id="f_WE" type="car" route="W_E" begin="0" end="2000" vehsPerHour="400" departLane="best"/>
+    <flow id="f_WN" type="car" route="W_N" begin="0" end="2000" vehsPerHour="200" departLane="best"/>
+    <flow id="f_WS" type="car" route="W_S" begin="0" end="2000" vehsPerHour="200" departLane="best"/>
+
+    <!-- EMERGENCY TRIPS -->
+    <!-- Pulse 1: Ambulance N->S (Straight, Lane 1 likely) -->
+    <trip id="ems_1" type="emergency" from="N_to_J0" to="J0_to_S" depart="200" departLane="best"/>
+    
+    <!-- Pulse 2: Firetruck E->S (Left Turn, Lane 0 likely) -->
+    <trip id="ems_2" type="emergency" from="E_to_J0" to="J0_to_S" depart="600" departLane="best"/>
+
+</routes>

@@ -1,0 +1,5 @@
+--- Simulation Results ---
+[FIXED TIME] Avg Waiting Time: 64.20 s (over 167 vehicles)
+[RL AGENT]   Avg Waiting Time: 26.85 s (over 175 vehicles)
+
+Improvement: 58.2% reduction in waiting time.

@@ -1,0 +1,21 @@
+<viewsettings>
+    <scheme name="real world"/>
+
+    <delay value="450"/>
+
+    <viewport zoom="150" x="0" y="0"/>
+
+    <background>
+        <color value="white"/>
+    </background>
+
+    <vehicles>
+        <show value="true"/>
+        <drawAs value="simple"/>
+    </vehicles>
+
+    <lanes>
+        <show value="true"/>
+        <width value="3.2"/>
+    </lanes>
+</viewsettings>

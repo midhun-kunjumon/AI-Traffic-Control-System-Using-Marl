@@ -1,0 +1,13 @@
+<edges>
+    <!-- Incoming Edges: 2 Lanes -->
+    <edge id="N_to_J0" from="N" to="J0" numLanes="2" speed="13.9" />
+    <edge id="S_to_J0" from="S" to="J0" numLanes="2" speed="13.9" />
+    <edge id="E_to_J0" from="E" to="J0" numLanes="2" speed="13.9" />
+    <edge id="W_to_J0" from="W" to="J0" numLanes="2" speed="13.9" />
+
+    <!-- Outgoing Edges: 2 Lanes -->
+    <edge id="J0_to_N" from="J0" to="N" numLanes="2" speed="13.9" />
+    <edge id="J0_to_S" from="J0" to="S" numLanes="2" speed="13.9" />
+    <edge id="J0_to_E" from="J0" to="E" numLanes="2" speed="13.9" />
+    <edge id="J0_to_W" from="J0" to="W" numLanes="2" speed="13.9" />
+</edges>

@@ -1,0 +1,66 @@
+<routes>
+    <!-- 
+      STAGE 8 ROUTES (Asymmetric Traffic)
+      Goal: Show RL beats Fixed Time.
+      
+      Pattern:
+      - North/South: Heavy Traffic (1200 veh/hr)
+      - East/West: Light Traffic (200 veh/hr)
+      
+      Fixed Time (Equal Split) will waste ~30s on East/West every cycle.
+      RL should learn to switch quickly after E/W clears.
+    -->
+
+    <vType id="car" accel="2.0" decel="4.5" length="4.5" maxSpeed="13.9" minGap="2.5" sigma="0.3"/>
+    
+    <!-- Emergency Vehicle: White Color, Emergency UI Shape with Blinker -->
+    <vType id="emergency" vClass="emergency" guiShape="emergency" color="255,255,255" accel="3.0" decel="6.0" length="5.5" maxSpeed="25.0" minGap="2.0" sigma="0.0">
+        <param key="has.bluelight.device" value="true"/>
+    </vType>
+
+    <!-- ROUTES (Same as Stage 7) -->
+    <route id="N_S" edges="N_to_J0 J0_to_S"/>
+    <route id="N_E" edges="N_to_J0 J0_to_E"/>
+    <route id="N_W" edges="N_to_J0 J0_to_W"/>
+    
+    <route id="S_N" edges="S_to_J0 J0_to_N"/>
+    <route id="S_W" edges="S_to_J0 J0_to_W"/>
+    <route id="S_E" edges="S_to_J0 J0_to_E"/>
+    
+    <route id="E_W" edges="E_to_J0 J0_to_W"/>
+    <route id="E_S" edges="E_to_J0 J0_to_S"/>
+    <route id="E_N" edges="E_to_J0 J0_to_N"/>
+    
+    <route id="W_E" edges="W_to_J0 J0_to_E"/>
+    <route id="W_N" edges="W_to_J0 J0_to_N"/>
+    <route id="W_S" edges="W_to_J0 J0_to_S"/>
+
+    <!-- ASYMMETRIC FLOWS -->
+    
+    <!-- HEAVY: North Inflow (Total ~1200) -->
+    <flow id="f_NS" type="car" route="N_S" begin="0" end="20000" vehsPerHour="800" departLane="best"/>
+    <flow id="f_NE" type="car" route="N_E" begin="0" end="20000" vehsPerHour="200" departLane="best"/>
+    <flow id="f_NW" type="car" route="N_W" begin="0" end="20000" vehsPerHour="200" departLane="best"/>
+    
+    <!-- HEAVY: South Inflow (Total ~1200) -->
+    <flow id="f_SN" type="car" route="S_N" begin="0" end="20000" vehsPerHour="800" departLane="best"/>
+    <flow id="f_SW" type="car" route="S_W" begin="0" end="20000" vehsPerHour="200" departLane="best"/>
+    <flow id="f_SE" type="car" route="S_E" begin="0" end="20000" vehsPerHour="200" departLane="best"/>
+    
+    <!-- LIGHT: East Inflow (Total ~200) -->
+    <flow id="f_EW" type="car" route="E_W" begin="0" end="20000" vehsPerHour="100" departLane="best"/>
+    <flow id="f_ES" type="car" route="E_S" begin="0" end="20000" vehsPerHour="50" departLane="best"/>
+    <flow id="f_EN" type="car" route="E_N" begin="0" end="20000" vehsPerHour="50" departLane="best"/>
+    
+    <!-- LIGHT: West Inflow (Total ~200) -->
+    <flow id="f_WE" type="car" route="W_E" begin="0" end="20000" vehsPerHour="100" departLane="best"/>
+    <flow id="f_WN" type="car" route="W_N" begin="0" end="20000" vehsPerHour="50" departLane="best"/>
+    <flow id="f_WS" type="car" route="W_S" begin="0" end="20000" vehsPerHour="50" departLane="best"/>
+
+    <!-- EMERGENCY VEHICLES (Random injection to test Preemption) -->
+    <!-- Approx 1 every 2 minutes (30/hr) from various directions -->
+    <flow id="f_EMG_N" type="emergency" route="N_S" begin="50" end="20000" vehsPerHour="15" departLane="best" color="255,255,255"/>
+    <flow id="f_EMG_E" type="emergency" route="E_W" begin="100" end="20000" vehsPerHour="15" departLane="best" color="255,255,255"/>
+    
+</routes>
+

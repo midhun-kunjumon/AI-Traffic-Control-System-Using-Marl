@@ -1,0 +1,48 @@
+<connections>
+    <!-- 
+      LHT RULES:
+      Lane 0 (Leftmost): Left Turn (Near side)
+      Lane 1 (Rightmost): Straight + Right Turn (Far side)
+    -->
+
+    <!-- NORTH Approach -->
+    <!-- Lane 0 -> Left (East) -->
+    <connection from="N_to_J0" to="J0_to_E" fromLane="0" toLane="0" />
+    <!-- Lane 0 -> Straight (South) [NEW FIX] -->
+    <connection from="N_to_J0" to="J0_to_S" fromLane="0" toLane="0" />
+    <!-- Lane 1 -> Straight (South) -->
+    <connection from="N_to_J0" to="J0_to_S" fromLane="1" toLane="1" />
+    <!-- Lane 1 -> Right (West) -->
+    <connection from="N_to_J0" to="J0_to_W" fromLane="1" toLane="1" />
+
+    <!-- SOUTH Approach -->
+    <!-- Lane 0 -> Left (West) -->
+    <connection from="S_to_J0" to="J0_to_W" fromLane="0" toLane="0" />
+    <!-- Lane 0 -> Straight (North) [NEW FIX] -->
+    <connection from="S_to_J0" to="J0_to_N" fromLane="0" toLane="0" />
+    <!-- Lane 1 -> Straight (North) -->
+    <connection from="S_to_J0" to="J0_to_N" fromLane="1" toLane="1" />
+    <!-- Lane 1 -> Right (East) -->
+    <connection from="S_to_J0" to="J0_to_E" fromLane="1" toLane="1" />
+
+    <!-- EAST Approach -->
+    <!-- Lane 0 -> Left (South) -->
+    <connection from="E_to_J0" to="J0_to_S" fromLane="0" toLane="0" />
+    <!-- Lane 0 -> Straight (West) [NEW FIX] -->
+    <connection from="E_to_J0" to="J0_to_W" fromLane="0" toLane="0" />
+    <!-- Lane 1 -> Straight (West) -->
+    <connection from="E_to_J0" to="J0_to_W" fromLane="1" toLane="1" />
+    <!-- Lane 1 -> Right (North) -->
+    <connection from="E_to_J0" to="J0_to_N" fromLane="1" toLane="1" />
+
+    <!-- WEST Approach -->
+    <!-- Lane 0 -> Left (North) -->
+    <connection from="W_to_J0" to="J0_to_N" fromLane="0" toLane="0" />
+    <!-- Lane 0 -> Straight (East) [NEW FIX] -->
+    <connection from="W_to_J0" to="J0_to_E" fromLane="0" toLane="0" />
+    <!-- Lane 1 -> Straight (East) -->
+    <connection from="W_to_J0" to="J0_to_E" fromLane="1" toLane="1" />
+    <!-- Lane 1 -> Right (South) -->
+    <connection from="W_to_J0" to="J0_to_S" fromLane="1" toLane="1" />
+
+</connections>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="intersection.net.xml"/>
+        <route-files value="routes.rou.xml"/>
+        <additional-files value="traffic_light.add.xml"/>
+    </input>
+
+    <time>
+        <begin value="0"/>
+        <end value="2000"/>
+        <step-length value="0.45"/>
+    </time>
+    
+    <gui_only>
+        <start value="false"/>
+        <gui-settings-file value="view.gui.xml"/>
+    </gui_only>
+
+</sumoConfiguration>

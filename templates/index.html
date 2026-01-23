@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Traffic Control Dashboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #3b82f6;
+            --success: #10b981;
+            --danger: #ef4444;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-weight: 300;
+            color: var(--text-muted);
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.2s;
+            width: 100%;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-green { background-color: var(--success); }
+        .btn-red { background-color: var(--danger); }
+
+        .stats-box {
+            margin-top: 20px;
+            text-align: left;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .stat-val {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        #status-bar {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: var(--card-bg);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--text-muted);
+        }
+        
+        .status-dot.active { background-color: var(--success); box-shadow: 0 0 10px var(--success); }
+        .status-dot.busy { background-color: var(--danger); box-shadow: 0 0 10px var(--danger); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AI Traffic Control Manager</h1>
+        <h2>Real-time Simulation Dashboard</h2>
+    </header>
+
+    <div id="status-bar">
+        <div id="dot" class="status-dot"></div>
+        <span id="status-text">System Idle</span>
+    </div>
+
+    <div class="container">
+        <!-- Card 1: Fixed Time -->
+        <div class="card">
+            <div class="card-icon">⏱️</div>
+            <h3>Fixed Time</h3>
+            <p style="color: var(--text-muted)">Traditional static signal cycle.</p>
+            <button class="btn" onclick="runSim('fixed')">Run Simulation</button>
+            
+            <div class="stats-box">
+                <div class="stat-row">
+                    <span>Avg Wait:</span>
+                    <span class="stat-val" id="res-fixed-wait">-</span>
+                </div>
+                <div class="stat-row">
+                    <span>Vehicles:</span>
+                    <span class="stat-val" id="res-fixed-veh">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Stable RL -->
+        <div class="card">
+            <div class="card-icon">🧠</div>
+            <h3>Smart AI Agent</h3>
+            <p style="color: var(--text-muted)">PPO Agent with Smart Switching.</p>
+            <button class="btn btn-green" onclick="runSim('stable_rl')">Run Simulation</button>
+            
+            <div class="stats-box">
+                <div class="stat-row">
+                    <span>Avg Wait:</span>
+                    <span class="stat-val" id="res-rl-wait">-</span>
+                </div>
+                <div class="stat-row">
+                    <span>Vehicles:</span>
+                    <span class="stat-val" id="res-rl-veh">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Emergency RL -->
+        <div class="card">
+            <div class="card-icon">🚑</div>
+            <h3>Emergency Mode</h3>
+            <p style="color: var(--text-muted)">AI + Emergency Vehicle Preemption.</p>
+            <button class="btn btn-red" onclick="runSim('emergency_rl')">Run Simulation</button>
+            
+            <div class="stats-box">
+                <div class="stat-row">
+                    <span>Avg Wait:</span>
+                    <span class="stat-val" id="res-emg-wait">-</span>
+                </div>
+                <div class="stat-row">
+                    <span>Vehicles:</span>
+                    <span class="stat-val" id="res-emg-veh">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runSim(mode) {
+            fetch(`/run_simulation/${mode}`)
+                .then(res => res.json())
+                .then(data => {
+                    // alert(data.message);
+                });
+        }
+
+        function updateStats() {
+            fetch('/get_results')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('status-text').innerText = data.status;
+                    const dot = document.getElementById('dot');
+                    
+                    if (data.status.startsWith("Running")) {
+                        dot.className = "status-dot busy";
+                    } else {
+                        dot.className = "status-dot active";
+                    }
+
+                    const map = {
+                        "Fixed Time": "fixed",
+                        "Stable RL": "rl",
+                        "Emergency RL": "emg"
+                    };
+
+                    for (const [key, val] of Object.entries(data.results)) {
+                        const id = map[key];
+                        if (id) {
+                            document.getElementById(`res-${id}-wait`).innerText = val.waiting_time + " s";
+                            document.getElementById(`res-${id}-veh`).innerText = val.vehicle_count;
+                        }
+                    }
+                });
+        }
+
+        setInterval(updateStats, 2000);
+        updateStats();
+    </script>
+</body>
+</html>

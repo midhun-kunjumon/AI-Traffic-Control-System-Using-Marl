@@ -36,12 +36,12 @@ def train():
     model = PPO("MlpPolicy", env, verbose=1, tensorboard_log=log_dir)
     
     print("Starting training...")
-    # Train for 5k timesteps for rapid demo (takes ~2 mins)
-    TIMESTEPS = 5000
-    model.learn(total_timesteps=TIMESTEPS, reset_num_timesteps=False, tb_log_name="PPO_Stable")
+    # Train for 50k timesteps for decent convergence
+    TIMESTEPS = 50000
+    model.learn(total_timesteps=TIMESTEPS, reset_num_timesteps=False, tb_log_name="PPO_MARL")
     
     # Save the model
-    model.save(f"{models_dir}/ppo_stable")
+    model.save(f"{models_dir}/ppo_marl")
     print("Training complete. Model saved.")
     
     env.close()

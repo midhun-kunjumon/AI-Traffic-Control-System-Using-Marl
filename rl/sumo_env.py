@@ -40,14 +40,14 @@ class SumoIntersectionEnv(gym.Env):
 
         # Incoming Lanes map (Lane 0 and Lane 1)
         self._incoming_lanes = [
-            # North
-            "N_to_J0_0", "N_to_J0_1",
-            # East
-            "E_to_J0_0", "E_to_J0_1",
-            # South
-            "S_to_J0_0", "S_to_J0_1",
-            # West
-            "W_to_J0_0", "W_to_J0_1"
+            # North (Coming from JN)
+            "JN_to_J0_0", "JN_to_J0_1",
+            # East (Coming from JE)
+            "JE_to_J0_0", "JE_to_J0_1",
+            # South (Coming from JS)
+            "JS_to_J0_0", "JS_to_J0_1",
+            # West (Coming from JW)
+            "JW_to_J0_0", "JW_to_J0_1"
         ]
         
         if self._gui:
@@ -165,20 +165,20 @@ class SumoIntersectionEnv(gym.Env):
         counts = []
         
         # North
-        queues.append(traci.lane.getLastStepHaltingNumber("N_to_J0_0") + traci.lane.getLastStepHaltingNumber("N_to_J0_1"))
-        counts.append(traci.lane.getLastStepVehicleNumber("N_to_J0_0") + traci.lane.getLastStepVehicleNumber("N_to_J0_1"))
+        queues.append(traci.lane.getLastStepHaltingNumber("JN_to_J0_0") + traci.lane.getLastStepHaltingNumber("JN_to_J0_1"))
+        counts.append(traci.lane.getLastStepVehicleNumber("JN_to_J0_0") + traci.lane.getLastStepVehicleNumber("JN_to_J0_1"))
         
         # East
-        queues.append(traci.lane.getLastStepHaltingNumber("E_to_J0_0") + traci.lane.getLastStepHaltingNumber("E_to_J0_1"))
-        counts.append(traci.lane.getLastStepVehicleNumber("E_to_J0_0") + traci.lane.getLastStepVehicleNumber("E_to_J0_1"))
+        queues.append(traci.lane.getLastStepHaltingNumber("JE_to_J0_0") + traci.lane.getLastStepHaltingNumber("JE_to_J0_1"))
+        counts.append(traci.lane.getLastStepVehicleNumber("JE_to_J0_0") + traci.lane.getLastStepVehicleNumber("JE_to_J0_1"))
 
         # South
-        queues.append(traci.lane.getLastStepHaltingNumber("S_to_J0_0") + traci.lane.getLastStepHaltingNumber("S_to_J0_1"))
-        counts.append(traci.lane.getLastStepVehicleNumber("S_to_J0_0") + traci.lane.getLastStepVehicleNumber("S_to_J0_1"))
+        queues.append(traci.lane.getLastStepHaltingNumber("JS_to_J0_0") + traci.lane.getLastStepHaltingNumber("JS_to_J0_1"))
+        counts.append(traci.lane.getLastStepVehicleNumber("JS_to_J0_0") + traci.lane.getLastStepVehicleNumber("JS_to_J0_1"))
 
         # West
-        queues.append(traci.lane.getLastStepHaltingNumber("W_to_J0_0") + traci.lane.getLastStepHaltingNumber("W_to_J0_1"))
-        counts.append(traci.lane.getLastStepVehicleNumber("W_to_J0_0") + traci.lane.getLastStepVehicleNumber("W_to_J0_1"))
+        queues.append(traci.lane.getLastStepHaltingNumber("JW_to_J0_0") + traci.lane.getLastStepHaltingNumber("JW_to_J0_1"))
+        counts.append(traci.lane.getLastStepVehicleNumber("JW_to_J0_0") + traci.lane.getLastStepVehicleNumber("JW_to_J0_1"))
             
         obs = np.array([phase] + queues + counts, dtype=np.float32)
         return obs

@@ -1,14 +1,14 @@
 {
     "Stable RL": {
-        "waiting_time": 40.99,
-        "vehicle_count": 264
+        "waiting_time": 33.88,
+        "vehicle_count": 76
     },
     "Fixed Time": {
-        "waiting_time": 74.0,
-        "vehicle_count": 163
+        "waiting_time": 85.66,
+        "vehicle_count": 29
     },
     "Emergency RL": {
-        "waiting_time": 40.99,
-        "vehicle_count": 264
+        "waiting_time": 32.16,
+        "vehicle_count": 57
     }
 }

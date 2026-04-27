@@ -4,3 +4,9 @@ stable-baselines3
 gymnasium
 shimmy
 tensorboard
+flask
+ultralytics
+opencv-python
+numpy
+pandas
+matplotlib

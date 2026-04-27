@@ -1,40 +1,128 @@
 <connections>
-    <!-- 
-      LHT RULES:
-      Lane 0 (Leftmost): Left Turn (Near side)
-      Lane 1 (Rightmost): Straight + Right Turn (Far side)
+    <!-- RHT RULES: Lane 1=Left, Lane 0=Right/Straight -->
+
+    <!-- ======================== -->
+    <!-- CENTER J0 CONNECTIONS    -->
+    <!-- ======================== -->
+    <!-- JN (North) -> J0 -->
+    <connection from="JN_to_J0" to="J0_to_JE" fromLane="1" toLane="1" /> <!-- Left -->
+    <connection from="JN_to_J0" to="J0_to_JS" fromLane="0" toLane="0" /> <!-- Straight -->
+    <connection from="JN_to_J0" to="J0_to_JW" fromLane="0" toLane="0" /> <!-- Right -->
+
+    <!-- JS (South) -> J0 -->
+    <connection from="JS_to_J0" to="J0_to_JW" fromLane="1" toLane="1" /> <!-- Left -->
+    <connection from="JS_to_J0" to="J0_to_JN" fromLane="0" toLane="0" /> <!-- Straight -->
+    <connection from="JS_to_J0" to="J0_to_JE" fromLane="0" toLane="0" /> <!-- Right -->
+
+    <!-- JE (East) -> J0 -->
+    <connection from="JE_to_J0" to="J0_to_JS" fromLane="1" toLane="1" /> <!-- Left -->
+    <connection from="JE_to_J0" to="J0_to_JW" fromLane="0" toLane="0" /> <!-- Straight -->
+    <connection from="JE_to_J0" to="J0_to_JN" fromLane="0" toLane="0" /> <!-- Right -->
+
+    <!-- JW (West) -> J0 -->
+    <connection from="JW_to_J0" to="J0_to_JN" fromLane="1" toLane="1" /> <!-- Left -->
+    <connection from="JW_to_J0" to="J0_to_JE" fromLane="0" toLane="0" /> <!-- Straight -->
+    <connection from="JW_to_J0" to="J0_to_JS" fromLane="0" toLane="0" /> <!-- Right -->
+
+    <!-- ======================== -->
+    <!-- NORTH JUNCTION (JN)      -->
+    <!-- ======================== -->
+    <!-- N -> JN -->
+    <connection from="N_to_JN" to="JN_to_JN_E" fromLane="1" toLane="1" />
+    <connection from="N_to_JN" to="JN_to_J0"   fromLane="0" toLane="0" />
+    <connection from="N_to_JN" to="JN_to_J0"   fromLane="1" toLane="1" />
+    <connection from="N_to_JN" to="JN_to_JN_W" fromLane="0" toLane="0" />
+
+    <!-- J0 -> JN -->
+    <connection from="J0_to_JN" to="JN_to_JN_W" fromLane="1" toLane="1" />
+    <connection from="J0_to_JN" to="JN_to_N"    fromLane="0" toLane="0" />
+    <connection from="J0_to_JN" to="JN_to_JN_E" fromLane="0" toLane="0" />
+
+    <!-- JN_E -> JN -->
+    <connection from="JN_E_to_JN" to="JN_to_J0"   fromLane="1" toLane="1" />
+    <connection from="JN_E_to_JN" to="JN_to_JN_W" fromLane="0" toLane="0" />
+    <connection from="JN_E_to_JN" to="JN_to_N"    fromLane="0" toLane="0" />
+
+    <!-- JN_W -> JN -->
+    <connection from="JN_W_to_JN" to="JN_to_N"    fromLane="1" toLane="1" />
+    <connection from="JN_W_to_JN" to="JN_to_JN_E" fromLane="0" toLane="0" />
+    <connection from="JN_W_to_JN" to="JN_to_J0"   fromLane="0" toLane="0" />
+
+    <!-- ======================== -->
+    <!-- SOUTH JUNCTION (JS)      -->
+    <!-- ======================== -->
+    <!-- S -> JS -->
+    <connection from="S_to_JS" to="JS_to_JS_W" fromLane="1" toLane="1" />
+    <connection from="S_to_JS" to="JS_to_J0"   fromLane="0" toLane="0" />
+    <connection from="S_to_JS" to="JS_to_J0"   fromLane="1" toLane="1" />
+    <connection from="S_to_JS" to="JS_to_JS_E" fromLane="0" toLane="0" />
+
+    <!-- J0 -> JS -->
+    <connection from="J0_to_JS" to="JS_to_JS_E" fromLane="1" toLane="1" />
+    <connection from="J0_to_JS" to="JS_to_S"    fromLane="0" toLane="0" />
+    <connection from="J0_to_JS" to="JS_to_JS_W" fromLane="0" toLane="0" />
+
+    <!-- JS_E -> JS -->
+    <connection from="JS_E_to_JS" to="JS_to_S"    fromLane="1" toLane="1" />
+    <connection from="JS_E_to_JS" to="JS_to_JS_W" fromLane="0" toLane="0" />
+    <connection from="JS_E_to_JS" to="JS_to_J0"   fromLane="0" toLane="0" />
+
+    <!-- JS_W -> JS -->
+    <connection from="JS_W_to_JS" to="JS_to_J0"   fromLane="1" toLane="1" />
+    <connection from="JS_W_to_JS" to="JS_to_JS_E" fromLane="0" toLane="0" />
+    <connection from="JS_W_to_JS" to="JS_to_S"    fromLane="0" toLane="0" />
+
+    <!-- ======================== -->
+    <!-- WEST JUNCTION (JW)       -->
+    <!-- ======================== -->
+    <!-- W -> JW -->
+    <connection from="W_to_JW" to="JW_to_JW_N" fromLane="1" toLane="1" />
+    <connection from="W_to_JW" to="JW_to_J0"   fromLane="0" toLane="0" />
+    <connection from="W_to_JW" to="JW_to_J0"   fromLane="1" toLane="1" />
+    <connection from="W_to_JW" to="JW_to_JW_S" fromLane="0" toLane="0" />
+
+    <!-- J0 -> JW -->
+    <connection from="J0_to_JW" to="JW_to_JW_S" fromLane="1" toLane="1" />
+    <connection from="J0_to_JW" to="JW_to_W"    fromLane="0" toLane="0" />
+    <connection from="J0_to_JW" to="JW_to_JW_N" fromLane="0" toLane="0" />
+
+    <!-- JW_N -> JW -->
+    <connection from="JW_N_to_JW" to="JW_to_J0"   fromLane="1" toLane="1" />
+    <connection from="JW_N_to_JW" to="JW_to_JW_S" fromLane="0" toLane="0" />
+    <connection from="JW_N_to_JW" to="JW_to_W"    fromLane="0" toLane="0" />
+
+    <!-- JW_S -> JW -->
+    <connection from="JW_S_to_JW" to="JW_to_W"    fromLane="1" toLane="1" />
+    <connection from="JW_S_to_JW" to="JW_to_JW_N" fromLane="0" toLane="0" />
+    <connection from="JW_S_to_JW" to="JW_to_J0"   fromLane="0" toLane="0" />
+
+    <!-- ======================== -->
+    <!-- EAST JUNCTION (JE) 3-WAY -->
+    <!-- ======================== -->
+    <!-- Note on 3-Way:
+        JE is at (1000,0). E is at (2000,0). JE_N is at (1000,500).
+        JE connects: 
+        - West Arm (from J0)
+        - East Arm (from E)
+        - North Arm (from JE_N)
     -->
 
-    <!-- NORTH Approach -->
-    <!-- Lane 0 -> Left (East) -->
-    <connection from="N_to_J0" to="J0_to_E" fromLane="0" toLane="0" />
-    <!-- Lane 1 -> Straight (South) -->
-    <connection from="N_to_J0" to="J0_to_S" fromLane="1" toLane="1" />
-    <!-- Lane 1 -> Right (West) -->
-    <connection from="N_to_J0" to="J0_to_W" fromLane="1" toLane="1" />
+    <!-- E -> JE (Heading West) -->
+    <!-- Left to JE_N? No, JE_N is North. Turning Right from E goes North. Turning Left goes South. There is no South arm. -->
+    <!-- RHT: Straight -> J0. Right Turn -> JE_N. -->
+    <connection from="E_to_JE" to="JE_to_J0"   fromLane="0" toLane="0" /> <!-- Straight (Lane 0) -->
+    <connection from="E_to_JE" to="JE_to_J0"   fromLane="1" toLane="1" /> <!-- Straight (Lane 1) -->
+    <connection from="E_to_JE" to="JE_to_JE_N" fromLane="0" toLane="0" /> <!-- Right (Lane 0) -->
+    <!-- No Left Turn -->
 
-    <!-- SOUTH Approach -->
-    <!-- Lane 0 -> Left (West) -->
-    <connection from="S_to_J0" to="J0_to_W" fromLane="0" toLane="0" />
-    <!-- Lane 1 -> Straight (North) -->
-    <connection from="S_to_J0" to="J0_to_N" fromLane="1" toLane="1" />
-    <!-- Lane 1 -> Right (East) -->
-    <connection from="S_to_J0" to="J0_to_E" fromLane="1" toLane="1" />
+    <!-- J0 -> JE (Heading East) -->
+    <!-- Left to JE_N. Straight to E. -->
+    <connection from="J0_to_JE" to="JE_to_JE_N" fromLane="1" toLane="1" /> <!-- Left (Lane 1) -->
+    <connection from="J0_to_JE" to="JE_to_E"    fromLane="0" toLane="0" /> <!-- Straight (Lane 0) -->
 
-    <!-- EAST Approach -->
-    <!-- Lane 0 -> Left (South) -->
-    <connection from="E_to_J0" to="J0_to_S" fromLane="0" toLane="0" />
-    <!-- Lane 1 -> Straight (West) -->
-    <connection from="E_to_J0" to="J0_to_W" fromLane="1" toLane="1" />
-    <!-- Lane 1 -> Right (North) -->
-    <connection from="E_to_J0" to="J0_to_N" fromLane="1" toLane="1" />
-
-    <!-- WEST Approach -->
-    <!-- Lane 0 -> Left (North) -->
-    <connection from="W_to_J0" to="J0_to_N" fromLane="0" toLane="0" />
-    <!-- Lane 1 -> Straight (East) -->
-    <connection from="W_to_J0" to="J0_to_E" fromLane="1" toLane="1" />
-    <!-- Lane 1 -> Right (South) -->
-    <connection from="W_to_J0" to="J0_to_S" fromLane="1" toLane="1" />
+    <!-- JE_N -> JE (Heading South) -->
+    <!-- Left to E. Right to J0. -->
+    <connection from="JE_N_to_JE" to="JE_to_E"  fromLane="1" toLane="1" /> <!-- Left (Lane 1) -->
+    <connection from="JE_N_to_JE" to="JE_to_J0" fromLane="0" toLane="0" /> <!-- Right (Lane 0) -->
 
 </connections>

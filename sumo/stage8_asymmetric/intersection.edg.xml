@@ -1,13 +1,82 @@
 <edges>
-    <!-- Incoming Edges: 2 Lanes -->
-    <edge id="N_to_J0" from="N" to="J0" numLanes="2" speed="13.9" />
-    <edge id="S_to_J0" from="S" to="J0" numLanes="2" speed="13.9" />
-    <edge id="E_to_J0" from="E" to="J0" numLanes="2" speed="13.9" />
-    <edge id="W_to_J0" from="W" to="J0" numLanes="2" speed="13.9" />
+    <!-- ======================== -->
+    <!-- CENTER (J0) CONNECTIONS  -->
+    <!-- ======================== -->
+    
+    <!-- FROM JN (North) to J0 -->
+    <edge id="JN_to_J0" from="JN" to="J0" numLanes="2" speed="13.9" />
+    <edge id="J0_to_JN" from="J0" to="JN" numLanes="2" speed="13.9" />
 
-    <!-- Outgoing Edges: 2 Lanes -->
-    <edge id="J0_to_N" from="J0" to="N" numLanes="2" speed="13.9" />
-    <edge id="J0_to_S" from="J0" to="S" numLanes="2" speed="13.9" />
+    <!-- S, E, W to J0 (Unchanged for now) -->
+    <!-- FROM JS (South) to J0 -->
+    <edge id="JS_to_J0" from="JS" to="J0" numLanes="2" speed="13.9" />
+    <edge id="J0_to_JS" from="J0" to="JS" numLanes="2" speed="13.9" />
+
+    <!-- FROM JE (East) to J0 -->
+    <edge id="JE_to_J0" from="JE" to="J0" numLanes="2" speed="13.9" />
+    <edge id="J0_to_JE" from="J0" to="JE" numLanes="2" speed="13.9" />
+    
+    <!-- FROM JW (West) to J0 -->
+    <edge id="JW_to_J0" from="JW" to="J0" numLanes="2" speed="13.9" />
+    <edge id="J0_to_JW" from="J0" to="JW" numLanes="2" speed="13.9" />
+
     <edge id="J0_to_E" from="J0" to="E" numLanes="2" speed="13.9" />
-    <edge id="J0_to_W" from="J0" to="W" numLanes="2" speed="13.9" />
+
+    <!-- ======================== -->
+    <!-- NORTH JUNCTION (JN)      -->
+    <!-- ======================== -->
+
+    <!-- N Endpoint <-> JN -->
+    <edge id="N_to_JN" from="N" to="JN" numLanes="2" speed="13.9" />
+    <edge id="JN_to_N" from="JN" to="N" numLanes="2" speed="13.9" />
+
+    <!-- JN Side Arms -->
+    <edge id="JN_W_to_JN" from="JN_W" to="JN" numLanes="2" speed="13.9" />
+    <edge id="JN_to_JN_W" from="JN" to="JN_W" numLanes="2" speed="13.9" />
+
+    <edge id="JN_E_to_JN" from="JN_E" to="JN" numLanes="2" speed="13.9" />
+    <edge id="JN_to_JN_E" from="JN" to="JN_E" numLanes="2" speed="13.9" />
+
+    <!-- ======================== -->
+    <!-- WEST JUNCTION (JW)       -->
+    <!-- ======================== -->
+
+    <!-- W Endpoint <-> JW -->
+    <edge id="W_to_JW" from="W" to="JW" numLanes="2" speed="13.9" />
+    <edge id="JW_to_W" from="JW" to="W" numLanes="2" speed="13.9" />
+
+    <!-- JW Side Arms -->
+    <edge id="JW_N_to_JW" from="JW_N" to="JW" numLanes="2" speed="13.9" />
+    <edge id="JW_to_JW_N" from="JW" to="JW_N" numLanes="2" speed="13.9" />
+
+    <edge id="JW_S_to_JW" from="JW_S" to="JW" numLanes="2" speed="13.9" />
+    <edge id="JW_to_JW_S" from="JW" to="JW_S" numLanes="2" speed="13.9" />
+
+    <!-- ======================== -->
+    <!-- SOUTH JUNCTION (JS)      -->
+    <!-- ======================== -->
+
+    <!-- S Endpoint <-> JS -->
+    <edge id="S_to_JS" from="S" to="JS" numLanes="2" speed="13.9" />
+    <edge id="JS_to_S" from="JS" to="S" numLanes="2" speed="13.9" />
+
+    <!-- JS Side Arms -->
+    <edge id="JS_W_to_JS" from="JS_W" to="JS" numLanes="2" speed="13.9" />
+    <edge id="JS_to_JS_W" from="JS" to="JS_W" numLanes="2" speed="13.9" />
+
+    <edge id="JS_E_to_JS" from="JS_E" to="JS" numLanes="2" speed="13.9" />
+    <edge id="JS_to_JS_E" from="JS" to="JS_E" numLanes="2" speed="13.9" />
+
+    <!-- ======================== -->
+    <!-- EAST JUNCTION (JE) - 3 Way -->
+    <!-- ======================== -->
+
+    <!-- E Endpoint <-> JE -->
+    <edge id="E_to_JE" from="E" to="JE" numLanes="2" speed="13.9" />
+    <edge id="JE_to_E" from="JE" to="E" numLanes="2" speed="13.9" />
+
+    <!-- JE Side Arms (Only North) -->
+    <edge id="JE_N_to_JE" from="JE_N" to="JE" numLanes="2" speed="13.9" />
+    <edge id="JE_to_JE_N" from="JE" to="JE_N" numLanes="2" speed="13.9" />
+
 </edges>

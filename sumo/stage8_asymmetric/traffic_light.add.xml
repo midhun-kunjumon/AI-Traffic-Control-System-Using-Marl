@@ -11,25 +11,74 @@
       
       Cycle: North -> East -> South -> West
     -->
+    <!-- 
+       UNIFIED SPLIT PHASE LOGIC (12 Links)
+       Standard 4-Arm Junction:
+       - Phase 0: North Green (Indices 0-2 or 6-8 depending on rotation)
+       - Phase 2: East Green
+       - Phase 4: South Green
+       - Phase 6: West Green
+    -->
+
+    <!-- Center J0 -->
     <tlLogic id="J0" type="static" programID="split_phase" offset="0">
-        <!-- Phase 0: North Green (Indices 6,7,8) -->
-        <phase duration="30" state="rrrrrrGGGrrr"/>
-        <!-- Phase 1: North Yellow -->
-        <phase duration="3"  state="rrrrrryyyrrr"/>
-        
-        <!-- Phase 2: East Green (Indices 3,4,5) -->
-        <phase duration="30" state="rrrGGGrrrrrr"/>
-        <!-- Phase 3: East Yellow -->
-        <phase duration="3"  state="rrryyyrrrrrr"/>
-        
-        <!-- Phase 4: South Green (Indices 0,1,2) -->
-        <phase duration="30" state="GGGrrrrrrrrr"/>
-        <!-- Phase 5: South Yellow -->
+        <phase duration="30" state="GGGrrrrrrrrr"/> <!-- North -->
         <phase duration="3"  state="yyyrrrrrrrrr"/>
-        
-        <!-- Phase 6: West Green (Indices 9,10,11) -->
-        <phase duration="30" state="rrrrrrrrrGGG"/>
-        <!-- Phase 7: West Yellow -->
+        <phase duration="30" state="rrrGGGrrrrrr"/> <!-- East -->
+        <phase duration="3"  state="rrryyyrrrrrr"/>
+        <phase duration="30" state="rrrrrrGGGrrr"/> <!-- South -->
+        <phase duration="3"  state="rrrrrryyyrrr"/>
+        <phase duration="30" state="rrrrrrrrrGGG"/> <!-- West -->
         <phase duration="3"  state="rrrrrrrrryyy"/>
+    </tlLogic>
+
+    <!-- North Junction JN -->
+    <tlLogic id="JN" type="static" programID="split_phase" offset="0">
+        <phase duration="30" state="GGGGrrrrrrrrr"/> <!-- North (4 links) -->
+        <phase duration="3"  state="yyyyrrrrrrrrr"/>
+        <phase duration="30" state="rrrrGGGrrrrrr"/> <!-- East (3 links) -->
+        <phase duration="3"  state="rrrryyyrrrrrr"/>
+        <phase duration="30" state="rrrrrrrGGGrrr"/> <!-- South (3 links) -->
+        <phase duration="3"  state="rrrrrrryyyrrr"/>
+        <phase duration="30" state="rrrrrrrrrrGGG"/> <!-- West (3 links) -->
+        <phase duration="3"  state="rrrrrrrrrryyy"/>
+    </tlLogic>
+
+    <!-- South Junction JS -->
+    <tlLogic id="JS" type="static" programID="split_phase" offset="0">
+        <phase duration="30" state="GGGrrrrrrrrrr"/> <!-- North (3 links) -->
+        <phase duration="3"  state="yyyrrrrrrrrrr"/>
+        <phase duration="30" state="rrrGGGrrrrrrr"/> <!-- East (3 links) -->
+        <phase duration="3"  state="rrryyyrrrrrrr"/>
+        <phase duration="30" state="rrrrrrGGGGrrr"/> <!-- South (4 links) -->
+        <phase duration="3"  state="rrrrrryyyyrrr"/>
+        <phase duration="30" state="rrrrrrrrrrGGG"/> <!-- West (3 links) -->
+        <phase duration="3"  state="rrrrrrrrrryyy"/>
+    </tlLogic>
+
+    <!-- West Junction JW -->
+    <tlLogic id="JW" type="static" programID="split_phase" offset="0">
+        <phase duration="30" state="GGGrrrrrrrrrr"/> <!-- North (3 links) -->
+        <phase duration="3"  state="yyyrrrrrrrrrr"/>
+        <phase duration="30" state="rrrGGGrrrrrrr"/> <!-- East (3 links) -->
+        <phase duration="3"  state="rrryyyrrrrrrr"/>
+        <phase duration="30" state="rrrrrrGGGrrrr"/> <!-- South (3 links) -->
+        <phase duration="3"  state="rrrrrryyyrrrr"/>
+        <phase duration="30" state="rrrrrrrrrGGGG"/> <!-- West (4 links) -->
+        <phase duration="3"  state="rrrrrrrrryyyy"/>
+    </tlLogic>
+
+    <!-- East Junction JE (3-Way) -->
+    <!-- 
+      JE Indices seen: 0-3 (N), 4-7 (E), 8-11 (W).
+      Total 12.
+    -->
+    <tlLogic id="JE" type="static" programID="split_phase" offset="0">
+        <phase duration="30" state="GGrrrrr"/> <!-- North (2 links) -->
+        <phase duration="3"  state="yyrrrrr"/>
+        <phase duration="30" state="rrGGGrr"/> <!-- East (3 links) -->
+        <phase duration="3"  state="rryyyrr"/>
+        <phase duration="30" state="rrrrrGG"/> <!-- West (2 links) -->
+        <phase duration="3"  state="rrrrryy"/>
     </tlLogic>
 </additional>

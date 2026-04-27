@@ -1,7 +1,27 @@
 <nodes>
     <node id="J0" x="0.0" y="0.0" type="traffic_light"/>
-    <node id="N" x="0.0" y="500.0" />
-    <node id="S" x="0.0" y="-500.0" />
-    <node id="E" x="500.0" y="0.0" />
-    <node id="W" x="-500.0" y="0.0" />
+    
+    <!-- North Junction Chain -->
+    <node id="JN" x="0.0" y="1000.0" type="traffic_light"/>
+    <node id="N" x="0.0" y="2000.0" />
+    <node id="JN_W" x="-500.0" y="1000.0" />
+    <node id="JN_E" x="500.0" y="1000.0" />
+
+    <!-- South Junction Chain -->
+    <node id="JS" x="0.0" y="-1000.0" type="traffic_light"/>
+    <node id="S" x="0.0" y="-2000.0" />
+    <node id="JS_E" x="500.0" y="-1000.0" />
+    <node id="JS_W" x="-500.0" y="-1000.0" />
+    
+    <!-- East Junction Chain -->
+    <node id="JE" x="1000.0" y="0.0" type="traffic_light"/>
+    <node id="E" x="2000.0" y="0.0" />
+    <!-- 3-Way Junction: Only JE_N side arm -->
+    <node id="JE_N" x="1000.0" y="500.0" />
+    
+    <!-- West Junction Chain -->
+    <node id="JW" x="-1000.0" y="0.0" type="traffic_light"/>
+    <node id="W" x="-2000.0" y="0.0" />
+    <node id="JW_N" x="-1000.0" y="500.0" />
+    <node id="JW_S" x="-1000.0" y="-500.0" />
 </nodes>

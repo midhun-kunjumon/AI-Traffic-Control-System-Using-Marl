@@ -2,6 +2,56 @@
 
 This project is an advanced, production-grade, AI-driven traffic signal control system. It integrates computer vision (**YOLOv8**), Multi-Agent Reinforcement Learning (**MARL** with **PPO**), and physical edge computing (**ESP32-CAM** and **ESP32 Microcontroller**) to dynamically optimize traffic flow at a 4-way intersection, featuring emergency vehicle preemption.
 
+---
+
+## 🎥 System Demonstration
+
+Watch the complete working demonstration of the traffic control system in action:
+
+[📁 View Demonstration Video (Complete_Working_video.mp4)](./Complete_Working_video.mp4)
+
+This video showcases:
+* **Real-time ESP32-CAM HTTP snapshot capture** from four direction lanes (North, East, South, West).
+* **YOLOv8 object detection and vehicle tracking** running on live frames.
+* **Cooperative PPO MARL agent decision-making** and dynamic green time calculation.
+* **Bidirectional serial communication** with the ESP32 microcontroller actuating physical traffic light signals.
+
+---
+
+## 🏗️ System Architecture
+
+The project consists of three main components: **Perception** (vehicle detection from live HTTP video feeds), **Decision-Making** (reinforcement learning or emergency rule override), and **Actuation** (serial communication to the ESP32 physical traffic lights).
+
+```mermaid
+graph TD
+    subgraph Perception (Edge Cameras)
+        C_N[ESP32-CAM North] -->|HTTP Live Stream| TC[traffic_system.py / app.py]
+        C_E[ESP32-CAM East] -->|HTTP Live Stream| TC
+        C_S[ESP32-CAM South] -->|HTTP Live Stream| TC
+        C_W[ESP32-CAM West] -->|HTTP Live Stream| TC
+    end
+
+    subgraph Core AI Controller (Python Host)
+        TC -->|Captured Frames| YOLO[YOLOv8 Object Detector]
+        YOLO -->|Vehicle counts, Queue length, Speed, Emergency detection| EM{Emergency Check}
+        EM -->|🚨 Emergency Detected| EO[Emergency Preemption Override]
+        EM -->|✅ No Emergency| PPO[Stable-Baselines3 PPO MARL Agent]
+        
+        EO -->|Force Priority Phase| SC[Serial Controller]
+        PPO -->|Proportional Signal Green Timings| SC
+    end
+
+    subgraph Actuation (Physical Hardware)
+        SC -->|Serial: 115200 Baud| ESP[ESP32 Traffic Controller]
+        ESP -->|GPIO Pin Output| LED[4-Way Traffic LEDs]
+        ESP -->|READY Handshake Signal| SC
+    end
+
+    subgraph User Dashboard
+        TC -->|Real-time Metrics & Streams| Flask[Flask App: app.py]
+        Flask -->|Socket / REST endpoints| Web[Live Web UI]
+    end
+```
 
 ---
 

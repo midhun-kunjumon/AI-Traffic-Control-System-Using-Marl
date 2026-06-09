@@ -1,6 +1,52 @@
+# Python build artifacts
 __pycache__/
 *.pyc
-sumo/output/
+*.pyo
+*.pyd
+
+# Environments and configs
 .env
 .vscode/
 .venv/
+env/
+venv/
+
+# SUMO and training outputs
+sumo/output/
+traffic_logs/
+rl/logs/
+rl/evaluation_results/
+rl/*.log
+rl/topology.txt
+rl/metrics_*report.txt
+
+# YOLOv8 checkpoint models (keep final models, ignore checkpoints)
+rl/models/ppo_marl_v3_checkpoint_*
+
+# Test scripts and temporary testing files
+list_ports.py
+run_test.py
+test_best1.py
+test_lane_detection.py
+test_realtime_traffic_sim.py
+test_serial.py
+test_traci.py
+run_test_out.txt
+test_traci_out.txt
+crash_log.txt
+debug_out.txt
+
+# Test / capture images in root
+captured_frame.jpg
+detected_frame.jpg
+detected_low_conf.jpg
+raw_cam.jpg
+raw_E.jpg
+raw_S.jpg
+raw_W.jpg
+plot_E.jpg
+*.jpg
+
+# Ignore all detection results except cycle 216
+detection_results/*
+!detection_results/cycle216_*.jpg
